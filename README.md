@@ -43,7 +43,7 @@ reviewer.search("ああ古池や蛙飛び込む水の音ああ天秤や京江戸
 ```
 
 ### rule option
-The rule is your oyster.
+Change the rule by `rule` option (default: `[5, 7, 5]`).
 
 ```rb
 reviewer.judge("すもももももももものうち", rule: [4, 3, 5]) #=> true
