@@ -6,10 +6,10 @@ module Ikku
   class Reviewer
     # Find one available haiku from given text.
     # @return [Array<Array>]
-    def find(text)
+    def find(text, rule: nil)
       nodes = parser.parse(text)
       nodes.length.times.find do |index|
-        if (phrases = Scanner.new(nodes[index..-1]).scan)
+        if (phrases = Scanner.new(nodes[index..-1], rule: rule).scan)
           break phrases
         end
       end
@@ -17,16 +17,16 @@ module Ikku
 
     # Judge if given text is haiku or not.
     # @return [true, false]
-    def judge(text)
-      !Scanner.new(parser.parse(text), exactly: true).scan.nil?
+    def judge(text, rule: nil)
+      !Scanner.new(parser.parse(text), exactly: true, rule: rule).scan.nil?
     end
 
     # Search all available haikus from given text.
     # @return [Array<Array>]
-    def search(text)
+    def search(text, rule: nil)
       nodes = parser.parse(text)
       nodes.length.times.map do |index|
-        Scanner.new(nodes[index..-1]).scan
+        Scanner.new(nodes[index..-1], rule: rule).scan
       end.compact
     end
 
@@ -39,13 +39,14 @@ module Ikku
 
   # Find one haiku that starts from the 1st node of given nodes.
   class Scanner
-    RULE = [5, 7, 5]
+    DEFAULT_RULE = [5, 7, 5]
 
     attr_writer :count
 
-    def initialize(nodes, exactly: false)
+    def initialize(nodes, exactly: false, rule: nil)
       @exactly = exactly
       @nodes = nodes
+      @rule = rule
     end
 
     def scan
@@ -85,13 +86,13 @@ module Ikku
     end
 
     def first_of_phrase?
-      RULE.inject([]) do |array, length|
+      rule.inject([]) do |array, length|
         array << array.last.to_i + length
       end.include?(count)
     end
 
     def has_full_count?
-      count == RULE.inject(0, :+)
+      count == rule.inject(0, :+)
     end
 
     def has_valid_first_node?
@@ -103,17 +104,21 @@ module Ikku
     end
 
     def max_consumable_length
-      RULE[0..phrase_index].inject(0, :+) - count
+      rule[0..phrase_index].inject(0, :+) - count
     end
 
     def phrase_index
-      RULE.length.times.find do |index|
-        count < RULE[0..index].inject(0, :+)
-      end || RULE.length - 1
+      rule.length.times.find do |index|
+        count < rule[0..index].inject(0, :+)
+      end || rule.length - 1
     end
 
     def phrases
       @phrases ||= []
+    end
+
+    def rule
+      @rule || DEFAULT_RULE
     end
   end
 
