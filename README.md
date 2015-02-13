@@ -31,7 +31,7 @@ reviewer.find("ああ古池や蛙飛び込む水の音ああ")
 ```
 
 ### Ikku::Reviewer#search
-Search searches all available haikus from given text.
+Search all available haikus from given text.
 
 ```rb
 reviewer.search("ああ古池や蛙飛び込む水の音ああ天秤や京江戸かけて千代の春ああ")
