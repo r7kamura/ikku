@@ -1,31 +1,29 @@
 # Ikku
+Discover haiku from text.
 
-TODO: Write a gem description
+## Requirements
+- Ruby 2.0.0+
+- MeCab with IPADIC (e.g. `brew install mecab mecab-ipadic`)
 
-## Installation
+## Example
+```rb
+# Ikku::Reviewer class is the main interface for this library.
+require "ikku"
+reviewer = Ikku::Reviewer.new
 
-Add this line to your application's Gemfile:
+# Judge if given text is haiku or not.
+reviewer.judge("古池や蛙飛び込む水の音")        #=> true
+reviewer.judge("ああ古池や蛙飛び込む水の音ああ") #=> false
 
-```ruby
-gem 'ikku'
+# Find one available haiku from given text.
+reviewer.find("ああ古池や蛙飛び込む水の音ああ")
+#=> [["古池", "や"], ["蛙", "飛び込む"], ["水", "の", "音"]]
+
+# Search searches all available haikus from given text.
+reviewer.search("ああ古池や蛙飛び込む水の音ああ天秤や京江戸かけて千代の春ああ")
+#=> [
+#     [["古池", "や"], ["蛙", "飛び込む"], ["水", "の", "音"]],
+#     [["天秤", "や"], ["京", "江戸", "かけ", "て"], ["千代", "の", "春"]]
+#   ]
+#
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install ikku
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/ikku/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
