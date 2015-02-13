@@ -4,12 +4,16 @@ require "ikku/version"
 
 module Ikku
   class Reviewer
+    def initialize(rule: nil)
+      @rule = rule
+    end
+
     # Find one available haiku from given text.
     # @return [Array<Array>]
-    def find(text, rule: nil)
+    def find(text)
       nodes = parser.parse(text)
       nodes.length.times.find do |index|
-        if (phrases = Scanner.new(nodes[index..-1], rule: rule).scan)
+        if (phrases = Scanner.new(nodes[index..-1], rule: @rule).scan)
           break phrases
         end
       end
@@ -17,16 +21,16 @@ module Ikku
 
     # Judge if given text is haiku or not.
     # @return [true, false]
-    def judge(text, rule: nil)
-      !Scanner.new(parser.parse(text), exactly: true, rule: rule).scan.nil?
+    def judge(text)
+      !Scanner.new(parser.parse(text), exactly: true, rule: @rule).scan.nil?
     end
 
     # Search all available haikus from given text.
     # @return [Array<Array>]
-    def search(text, rule: nil)
+    def search(text)
       nodes = parser.parse(text)
       nodes.length.times.map do |index|
-        Scanner.new(nodes[index..-1], rule: rule).scan
+        Scanner.new(nodes[index..-1], rule: @rule).scan
       end.compact
     end
 
