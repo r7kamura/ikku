@@ -53,6 +53,11 @@ module Ikku
       @rule = rule
     end
 
+    # @note Pronounciation count
+    def count
+      @count ||= 0
+    end
+
     def scan
       if has_valid_first_node? && has_valid_last_node?
         @nodes.each_with_index do |node, index|
@@ -82,11 +87,6 @@ module Ikku
         self.count += node.pronounciation_length
         true
       end
-    end
-
-    # @note Pronounciation count
-    def count
-      @count ||= 0
     end
 
     def first_of_phrase?
