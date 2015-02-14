@@ -1,3 +1,6 @@
+## 0.0.4
+- Fix bug of Ikku::Scanner#consume
+
 ## 0.0.3
 - Change rule option interface
 
