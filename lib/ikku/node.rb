@@ -43,9 +43,9 @@ module Ikku
       case
       when ["助詞", "助動詞"].include?(type)
         false
-      when ["自立", "接尾"].include?(subtype1)
+      when ["非自立", "接尾"].include?(subtype1)
         false
-      when subtype1 == "非自立" && ["する", "できる"].include?(root_form)
+      when subtype1 == "自立" && ["する", "できる"].include?(root_form)
         false
       else
         true
@@ -57,14 +57,7 @@ module Ikku
     end
 
     def last_of_ikku?
-      case
-      when ["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
-        false
-      when type == "助動詞" && root_form == "だ"
-        false
-      else
-        true
-      end
+      !["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
     end
 
     def normal?

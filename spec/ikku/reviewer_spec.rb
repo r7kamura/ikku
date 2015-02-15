@@ -75,6 +75,14 @@ RSpec.describe Ikku::Reviewer do
 
       it { is_expected.to be false }
     end
+
+    context "with phrase starting with independent verb (歩く)" do
+      let(:text) do
+        "なぜ鳩は頭を振って歩くのか"
+      end
+
+      it { is_expected.to be true }
+    end
   end
 
   describe "#search" do
