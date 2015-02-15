@@ -1,3 +1,6 @@
+## 0.0.5
+- Improve pattern about 自立・非自立・助動詞
+
 ## 0.0.4
 - Fix bug of Ikku::Scanner#consume
 
