@@ -22,9 +22,7 @@ module Ikku
 
     def last_of_ikku?
       case
-      when type == "連体詞"
-        false
-      when ["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続"].include?(type)
+      when ["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
         false
       when type == "助動詞" && root_form == "だ"
         false
