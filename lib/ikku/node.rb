@@ -20,17 +20,6 @@ module Ikku
       stat == STAT_ID_FOR_BOS
     end
 
-    def last_of_ikku?
-      case
-      when ["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
-        false
-      when type == "助動詞" && root_form == "だ"
-        false
-      else
-        true
-      end
-    end
-
     def eos?
       stat == STAT_ID_FOR_EOS
     end
@@ -65,6 +54,17 @@ module Ikku
 
     def inspect
       to_s.inspect
+    end
+
+    def last_of_ikku?
+      case
+      when ["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
+        false
+      when type == "助動詞" && root_form == "だ"
+        false
+      else
+        true
+      end
     end
 
     def normal?
