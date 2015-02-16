@@ -1,3 +1,6 @@
+## 0.0.7
+- Don't allow phrase ending with 接頭辞
+
 ## 0.0.6
 - Don't allow English words in ikku
 

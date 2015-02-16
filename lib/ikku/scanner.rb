@@ -41,6 +41,8 @@ module Ikku
         false
       when first_of_phrase? && !node.first_of_phrase?
         false
+      when node.pronounciation_length == max_consumable_length && !node.last_of_phrase?
+        false
       else
         phrases[phrase_index] ||= []
         phrases[phrase_index] << node

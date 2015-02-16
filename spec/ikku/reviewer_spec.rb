@@ -91,6 +91,14 @@ RSpec.describe Ikku::Reviewer do
 
       it { is_expected.to be false }
     end
+
+    context "with phrase ending with 接頭辞" do
+      let(:text) do
+        "レバーのお汁飲んだので元気出た"
+      end
+
+      it { is_expected.to be false }
+    end
   end
 
   describe "#search" do

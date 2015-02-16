@@ -64,6 +64,10 @@ module Ikku
       !["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
     end
 
+    def last_of_phrase?
+      type != "接頭詞"
+    end
+
     def normal?
       stat == STAT_ID_FOR_NORMAL
     end
