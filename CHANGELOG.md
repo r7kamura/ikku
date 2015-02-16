@@ -1,3 +1,6 @@
+## 0.0.6
+- Don't allow English words in ikku
+
 ## 0.0.5
 - Improve pattern about 自立・非自立・助動詞
 
