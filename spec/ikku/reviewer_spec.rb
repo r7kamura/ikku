@@ -83,6 +83,14 @@ RSpec.describe Ikku::Reviewer do
 
       it { is_expected.to be true }
     end
+
+    context "with phrase including English" do
+      let(:text) do
+        "Apple#{super()}"
+      end
+
+      it { is_expected.to be false }
+    end
   end
 
   describe "#search" do

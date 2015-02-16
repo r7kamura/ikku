@@ -24,6 +24,10 @@ module Ikku
       stat == STAT_ID_FOR_EOS
     end
 
+    def element_of_ikku?
+      normal?
+    end
+
     def feature
       @feature ||= CSV.parse(@node.feature)[0]
     end
