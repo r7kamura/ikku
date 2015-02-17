@@ -36,7 +36,7 @@ module Ikku
       case
       when !first_of_phrase?
         false
-      when ["、", "・", " ", "　"].include?(surface)
+      when pronounciation_length.zero?
         false
       else
         true
