@@ -44,7 +44,7 @@ module Ikku
       case
       when !first_of_phrase?
         false
-      when pronounciation_length.zero?
+      when type == "記号" && !["括弧開", "括弧閉"].include?(subtype1)
         false
       else
         true

@@ -108,9 +108,9 @@ RSpec.describe Ikku::Reviewer do
       it { is_expected.to be false }
     end
 
-    context "with song starting with no pronounciation length node" do
+    context "with song starting with symbol" do
       let(:text) do
-        "「#{super()}"
+        "、#{super()}"
       end
 
       it { is_expected.to be false }
@@ -122,6 +122,30 @@ RSpec.describe Ikku::Reviewer do
       end
 
       it { is_expected.to be false }
+    end
+
+    context "with song including even parentheses" do
+      let(:text) do
+        "古池や「蛙＜飛び込む＞」水の音"
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context "with song including odd parentheses" do
+      let(:text) do
+        "古池や「蛙＜飛び込む」＞水の音"
+      end
+
+      it { is_expected.to be false }
+    end
+
+    context "with song starting with parenthesis" do
+      let(:text) do
+        "（#{super()}）"
+      end
+
+      it { is_expected.to be true }
     end
   end
 
