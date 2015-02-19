@@ -1,3 +1,6 @@
+## 0.1.1
+- Fix bracket bug
+
 ## 0.1.0
 - Change some reviewer methods to return `Ikku::Song`
 - Don't allow song with odd parentheses
