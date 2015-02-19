@@ -1,3 +1,6 @@
+## 0.0.9
+- Don't allow ikku ending with 連用タ接続
+
 ## 0.0.8
 - Don't allow ikku starting with no pronounciation length node
 
