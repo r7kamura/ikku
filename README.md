@@ -42,7 +42,7 @@ reviewer.search("ああ古池や蛙飛び込む水の音ああ天秤や京江戸
 ```
 
 ### Ikku::Song#phrases
-Returns an Array of phrases of `Ikku::Node`.
+Return an Array of phrases of `Ikku::Node`.
 
 ```rb
 song.phrases #=> [["古池", "や"], ["蛙", "飛び込む"], ["水", "の", "音"]]
