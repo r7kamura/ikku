@@ -18,7 +18,7 @@ RSpec.describe Ikku::Reviewer do
       instance.find(text)
     end
 
-    context "without ikku" do
+    context "with invalid song" do
       let(:text) do
         "test"
       end
@@ -26,16 +26,24 @@ RSpec.describe Ikku::Reviewer do
       it { is_expected.to be_nil }
     end
 
-    context "with valid ikku" do
-      it { is_expected.to be_a Array }
+    context "with valid song" do
+      it { is_expected.to be_a Ikku::Song }
     end
 
-    context "with text including ikku" do
+    context "with text including song" do
       let(:text) do
         "ああ#{super()}ああ"
       end
 
-      it { is_expected.to be_a Array }
+      it { is_expected.to be_a Ikku::Song }
+    end
+
+    context "with text including song ending with 連用タ接続" do
+      let(:text) do
+        "リビングでコーヒー飲んでだめになってる"
+      end
+
+      it { is_expected.to be_nil }
     end
   end
 
@@ -44,11 +52,11 @@ RSpec.describe Ikku::Reviewer do
       instance.judge(text)
     end
 
-    context "with valid ikku" do
+    context "with valid song" do
       it { is_expected.to be true }
     end
 
-    context "with invalid ikku" do
+    context "with invalid song" do
       let(:text) do
         "#{super()}ああ"
       end
@@ -56,7 +64,7 @@ RSpec.describe Ikku::Reviewer do
       it { is_expected.to be false }
     end
 
-    context "with rule option and valid ikku" do
+    context "with rule option and valid song" do
       let(:rule) do
         [4, 3, 5]
       end
@@ -68,7 +76,7 @@ RSpec.describe Ikku::Reviewer do
       it { is_expected.to be true }
     end
 
-    context "with rule option and invalid ikku" do
+    context "with rule option and invalid song" do
       let(:rule) do
         [4, 3, 5]
       end
@@ -100,20 +108,44 @@ RSpec.describe Ikku::Reviewer do
       it { is_expected.to be false }
     end
 
-    context "with ikku starting with no pronounciation length node" do
+    context "with song starting with symbol" do
       let(:text) do
-        "「#{super()}"
+        "、#{super()}"
       end
 
       it { is_expected.to be false }
     end
 
-    context "with ikku ending with 連用タ接続 (撮っ)" do
+    context "with song ending with 連用タ接続 (撮っ)" do
       let(:text) do
         "新宿の桜と庭の写真撮っ"
       end
 
       it { is_expected.to be false }
+    end
+
+    context "with song including even parentheses" do
+      let(:text) do
+        "古池や「蛙＜飛び込む＞」水の音"
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context "with song including odd parentheses" do
+      let(:text) do
+        "古池や「蛙＜飛び込む」＞水の音"
+      end
+
+      it { is_expected.to be false }
+    end
+
+    context "with song starting with parenthesis" do
+      let(:text) do
+        "（#{super()}）"
+      end
+
+      it { is_expected.to be true }
     end
   end
 
@@ -122,7 +154,7 @@ RSpec.describe Ikku::Reviewer do
       instance.search(text)
     end
 
-    context "without ikku" do
+    context "without song" do
       let(:text) do
         "test"
       end
@@ -130,11 +162,11 @@ RSpec.describe Ikku::Reviewer do
       it { is_expected.to be_a Array }
     end
 
-    context "with valid ikku" do
+    context "with valid song" do
       it { is_expected.to be_a Array }
     end
 
-    context "with text including ikku" do
+    context "with text including song" do
       let(:text) do
         "ああ#{super()}ああ"
       end
