@@ -1,5 +1,5 @@
 require "ikku/parser"
-require "ikku/scanner"
+require "ikku/song"
 
 module Ikku
   class Reviewer
@@ -7,30 +7,30 @@ module Ikku
       @rule = rule
     end
 
-    # Find one available haiku from given text.
-    # @return [Array<Array>]
+    # Find one valid song from given text.
+    # @return [Ikku::Song]
     def find(text)
       nodes = parser.parse(text)
       nodes.length.times.find do |index|
-        if (phrases = Scanner.new(nodes[index..-1], rule: @rule).scan)
-          break phrases
+        if (song = Song.new(nodes[index..-1], rule: @rule)).valid?
+          break song
         end
       end
     end
 
-    # Judge if given text is haiku or not.
+    # Judge if given text is valid song or not.
     # @return [true, false]
     def judge(text)
-      !Scanner.new(parser.parse(text), exactly: true, rule: @rule).scan.nil?
+      Song.new(parser.parse(text), exactly: true, rule: @rule).valid?
     end
 
-    # Search all available haikus from given text.
+    # Search all valid songs from given text.
     # @return [Array<Array>]
     def search(text)
       nodes = parser.parse(text)
       nodes.length.times.map do |index|
-        Scanner.new(nodes[index..-1], rule: @rule).scan
-      end.compact
+        Song.new(nodes[index..-1], rule: @rule)
+      end.select(&:valid?)
     end
 
     private
