@@ -15,7 +15,7 @@ reviewer = Ikku::Reviewer.new
 ```
 
 ### Ikku::Reviewer#judge
-Judge if given text is haiku or not.
+Judge if given text is valid song or not.
 
 ```rb
 reviewer.judge("古池や蛙飛び込む水の音") #=> true
@@ -23,27 +23,33 @@ reviewer.judge("ああ古池や蛙飛び込む水の音ああ") #=> false
 ```
 
 ### Ikku::Reviewer#find
-Find one available haiku from given text.
+Find one valid song from given text.
 
 ```rb
 reviewer.find("ああ古池や蛙飛び込む水の音ああ")
-#=> [["古池", "や"], ["蛙", "飛び込む"], ["水", "の", "音"]]
+#=> #<Ikku::Song>
 ```
 
 ### Ikku::Reviewer#search
-Search all available haikus from given text.
+Search all valid songs from given text.
 
 ```rb
 reviewer.search("ああ古池や蛙飛び込む水の音ああ天秤や京江戸かけて千代の春ああ")
 #=> [
-#     [["古池", "や"], ["蛙", "飛び込む"], ["水", "の", "音"]],
-#     [["天秤", "や"], ["京", "江戸", "かけ", "て"], ["千代", "の", "春"]]
+#     #<Ikku::Song>,
+#     #<Ikku::Song>,
 #   ]
-#
 ```
 
-### rule option
-Change the rule by `rule` option (default: `[5, 7, 5]`).
+### Ikku::Song#phrases
+Returns an Array of phrases of `Ikku::Node`.
+
+```rb
+song.phrases #=> [["古池", "や"], ["蛙", "飛び込む"], ["水", "の", "音"]]
+```
+
+### Rule option
+Pass `:rule` option to change the measure rule (default: `[5, 7, 5]`).
 
 ```rb
 reviewer = Ikku::Reviewer.new(rule: [4, 3, 5])
