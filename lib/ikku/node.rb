@@ -20,6 +20,14 @@ module Ikku
       stat == STAT_ID_FOR_BOS
     end
 
+    def conjugation1
+      feature[4]
+    end
+
+    def conjugation2
+      feature[5]
+    end
+
     def eos?
       stat == STAT_ID_FOR_EOS
     end
@@ -61,7 +69,14 @@ module Ikku
     end
 
     def last_of_ikku?
-      !["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
+      case
+      when ["名詞接続", "格助詞", "係助詞", "連体化", "接続助詞", "並立助詞", "副詞化", "数接続", "連体詞"].include?(type)
+        false
+      when conjugation2 == "連用タ接続"
+        false
+      else
+        true
+      end
     end
 
     def last_of_phrase?
