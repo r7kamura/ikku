@@ -1,3 +1,7 @@
+## 0.1.0
+- Change some reviewer methods to return `Ikku::Song`
+- Don't allow song with odd parentheses
+
 ## 0.0.9
 - Don't allow ikku ending with 連用タ接続
 
