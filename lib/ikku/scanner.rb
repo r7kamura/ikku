@@ -9,7 +9,7 @@ module Ikku
       @rule = rule
     end
 
-    # @note Pronounciation count
+    # @note Pronunciation count
     def count
       @count ||= 0
     end
@@ -33,18 +33,18 @@ module Ikku
 
     def consume(node)
       case
-      when node.pronounciation_length > max_consumable_length
+      when node.pronunciation_length > max_consumable_length
         false
       when !node.element_of_ikku?
         false
       when first_of_phrase? && !node.first_of_phrase?
         false
-      when node.pronounciation_length == max_consumable_length && !node.last_of_phrase?
+      when node.pronunciation_length == max_consumable_length && !node.last_of_phrase?
         false
       else
         phrases[phrase_index] ||= []
         phrases[phrase_index] << node
-        self.count += node.pronounciation_length
+        self.count += node.pronunciation_length
         true
       end
     end

@@ -9,7 +9,7 @@
 - Don't allow ikku ending with 連用タ接続
 
 ## 0.0.8
-- Don't allow ikku starting with no pronounciation length node
+- Don't allow ikku starting with no pronunciation length node
 
 ## 0.0.7
 - Don't allow phrase ending with 接頭辞
