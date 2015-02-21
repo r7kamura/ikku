@@ -87,23 +87,23 @@ module Ikku
       stat == STAT_ID_FOR_NORMAL
     end
 
-    def pronounciation
+    def pronunciation
       feature[8]
     end
 
-    def pronounciation_length
-      @pronounciation_length ||= begin
-        if pronounciation
-          pronounciation_mora.length
+    def pronunciation_length
+      @pronunciation_length ||= begin
+        if pronunciation
+          pronunciation_mora.length
         else
           0
         end
       end
     end
 
-    def pronounciation_mora
-      if pronounciation
-        pronounciation.tr("ぁ-ゔ","ァ-ヴ").gsub(/[^アイウエオカ-モヤユヨラ-ロワヲンヴー]/, "")
+    def pronunciation_mora
+      if pronunciation
+        pronunciation.tr("ぁ-ゔ","ァ-ヴ").gsub(/[^アイウエオカ-モヤユヨラ-ロワヲンヴー]/, "")
       end
     end
 
