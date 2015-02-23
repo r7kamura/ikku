@@ -74,6 +74,10 @@ module Ikku
         false
       when conjugation2 == "連用タ接続"
         false
+      when conjugation1 == "サ変・スル" && conjugation2 == "連用形"
+        false
+      when type == "動詞" && conjugation2 == "仮定形"
+        false
       else
         true
       end

@@ -45,6 +45,14 @@ RSpec.describe Ikku::Reviewer do
 
       it { is_expected.to be_nil }
     end
+
+    context "with song ending with 仮定形" do
+      let(:text) do
+        "その人に金をあげたい人がいれば"
+      end
+
+      it { is_expected.to be_nil }
+    end
   end
 
   describe "#judge" do
@@ -146,6 +154,14 @@ RSpec.describe Ikku::Reviewer do
       end
 
       it { is_expected.to be true }
+    end
+
+    context "with song ending with サ変・スル in 連用形 (-し)" do
+      let(:text) do
+        "炊きつけて画面眺めて満足し"
+      end
+
+      it { is_expected.to be false }
     end
   end
 
