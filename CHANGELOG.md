@@ -1,3 +1,7 @@
+## 0.1.2
+- Don't allow song ending with サ変・スル in 連用形 (-し)
+- Don't allow song ending with 動詞 in 仮定形
+
 ## 0.1.1
 - Fix bracket bug
 
