@@ -1,3 +1,6 @@
+## 0.1.4
+- Don't allow song ending with ん as 非自立名詞
+
 ## 0.1.3
 - Don't allow song ending with 未然形
 
