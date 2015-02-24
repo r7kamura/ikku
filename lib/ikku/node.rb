@@ -78,6 +78,8 @@ module Ikku
         false
       when type == "動詞" && ["仮定形", "未然形"].include?(conjugation2)
         false
+      when type == "名詞" && subtype1 == "非自立" && pronunciation == "ン"
+        false
       else
         true
       end

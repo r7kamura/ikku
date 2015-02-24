@@ -61,6 +61,14 @@ RSpec.describe Ikku::Reviewer do
 
       it { is_expected.to be_nil }
     end
+
+    context "with song ending with ん as 非自立名詞" do
+      let(:text) do
+        "古池や蛙飛び込むかかったんだ"
+      end
+
+      it { is_expected.to be_nil }
+    end
   end
 
   describe "#judge" do
