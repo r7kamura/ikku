@@ -53,6 +53,14 @@ RSpec.describe Ikku::Reviewer do
 
       it { is_expected.to be_nil }
     end
+
+    context "with song ending with 未然形 (い)" do
+      let(:text) do
+        "学会に多分ネイティブほとんどいない"
+      end
+
+      it { is_expected.to be_nil }
+    end
   end
 
   describe "#judge" do

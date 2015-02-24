@@ -76,7 +76,7 @@ module Ikku
         false
       when conjugation1 == "サ変・スル" && conjugation2 == "連用形"
         false
-      when type == "動詞" && conjugation2 == "仮定形"
+      when type == "動詞" && ["仮定形", "未然形"].include?(conjugation2)
         false
       else
         true
