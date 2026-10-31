@@ -2,7 +2,7 @@
 Discover haiku from text.
 
 ## Requirements
-- Ruby 2.0.0+
+- Ruby 3.3+
 - MeCab with IPADIC (e.g. `brew install mecab mecab-ipadic`)
 
 ## Example
